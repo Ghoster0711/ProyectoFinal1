@@ -33,9 +33,6 @@
     <ClInclude Include="Excepciones.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Expediente.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Fecha.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -90,9 +87,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Excepciones.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Expediente.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Fecha.cpp">

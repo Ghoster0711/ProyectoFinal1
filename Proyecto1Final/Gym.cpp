@@ -118,6 +118,41 @@ void Gym::listarDeportistasMorosos()
 	}
 }
 
+void Gym::deportistasMorosos() {
+	Iterador<Deportista>* ite = new Iterador<Deportista>(COD->getPrimero());
+	while (ite->getPNodo() != NULL) {
+		if (ite->getPNodo()->getDato() != NULL) {
+			if (deportistaMoroso(ite->getPNodo()->getDato()->getCedula()) == true) {
+				ite->getPNodo()->getDato()->setEstado("Moroso");
+			}
+		}
+		ite->operator++();
+	}
+	
+}
+
+bool Gym::deportistaMoroso(string id) {
+	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
+	Fecha* aux = NULL;
+	while (ite->getPNodo() != NULL) {
+		if (ite->getPNodo()->getDato() != NULL) {
+			if (ite->getPNodo()->getDato()->getId() == id) {
+				aux = ite->getPNodo()->getDato()->getFecha();
+				break;
+			}
+			else {
+				ite->operator++();
+			}
+		}
+	}
+	if (aux->getMes() < fecha->getMes() || aux->getAnio() < fecha->getAnio())
+		return true;
+	else
+		return false;
+}
+
+
+
 // ----------------------Cursos----------------------
 void Gym::listadoCurso()
 {
@@ -155,8 +190,6 @@ Curso* Gym::retornaCurso(string cod)
 	}
 	return NULL;
 }
-
-
 
 
 // ---------------------Grupos----------------------
@@ -300,7 +333,7 @@ string Gym::calcularCuotasCanceladas(int cuotas) {
 
 string Gym::reportePagosDeportista(string id) {
 	stringstream s;
-	s << "  Fecha de Pago          Mes Pagado        Monto cancelado" << endl;
+	s << " Fecha de Pago          Mes Pagado        Monto cancelado" << endl;
 	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
 	while (ite->getPNodo() != NULL) {
 		if (ite->getPNodo()->getDato() != NULL) {

@@ -40,7 +40,6 @@ string ExcepcionMatricula::toString() const {
 	return "ERROR: No puede matricular mas de 4 cursos. \n";
 }
 
-
 //Excepcion de grupo lleno 
 ExcepcionGrupoLleno::ExcepcionGrupoLleno() : Excepciones() {}
 ExcepcionGrupoLleno::~ExcepcionGrupoLleno() {}

@@ -120,10 +120,10 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		gym->getCOD()->ingresar(*d);
 		cout << "Deportista ingresado!!" << endl;
 	//}
-	//else {
-		//system("cls");
-		//cout << "ERROR: No existen cursos" << endl;
-	//}
+	/*else {
+		system("cls");
+		cout << "ERROR: No existen cursos" << endl;
+	}*/
 	system("pause");
 }
 
@@ -584,7 +584,7 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	nom = recibirGetline();
 	cout << "Digite el cupo maximo: ";
 	cin >> cup;
-	cout << "Fecha de inicio(dd/mm/aaaa): ";
+	cout << "Fecha de inicio(dd/mm/aaaa): " << endl;
 	cout << "Dia: "; cin >> dia;
 	cout << "Mes: "; cin >> mes;
 	cout << "Anio: "; cin >> anio;
@@ -593,10 +593,10 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	cout << "Horario: " << endl;
 	cout << "Digite el dia de la semana (l,k,m,j,v,s,d): ";
 	cin >> d;
-	cout << "Digite la hora de inicio (en hora militar): ";
+	cout << "Digite la hora de inicio (en hora militar): " << endl;
 	cout << "Hora: "; cin >> h1;
 	cout << "Minuto: "; cin >> m1;
-	cout << "Digite la hora de finalizacion (en hora militar): ";
+	cout << "Digite la hora de finalizacion (en hora militar): " << endl;
 	cout << "Hora: "; cin >> h2;
 	cout << "Minuto: "; cin >> m2;
 
@@ -757,7 +757,6 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 		cin >> id;
 		if (gym->encontrarDeportista(id) != true)
 			throw(ExcepcionIDNoExiste());
-		//Deportista tiene que estar activo 
 		//Deportista solo puede matricular 4 cursos 
 	}
 	catch (ExcepcionIDNoExiste& e) {
@@ -1027,11 +1026,11 @@ void Interfaz::registroNuevoPago(Gym* gym) {
 		system("pause");
 		return;
 	}
-	cout << "Deportista encontrado!!" << endl;
+	cout << "Deportista encontrado!!" << endl << endl;
 	cout << "Cuantas cuotas desea cancelar o pagar: ";
 	cin >> cuotas;
 	cout << "Monto a pagar: " << gym->getMensualidad() * cuotas << "(" << gym->getMensualidad()
-		<< "x " << cuotas << ")" << endl;
+		<< " x " << cuotas << ")" << endl;
 	cout << "Excelente se han cancelado las siguientes cuotas: " << endl;
 	cout << gym->calcularCuotasCanceladas(cuotas) << endl;
 
@@ -1056,8 +1055,8 @@ void Interfaz::reporteDePagosDeportista(Gym* gym) {
 		cout << e.toString() << endl;
 		system("pause");
 	}
-	cout << "Deportista encontrado!!" << endl;
-
+	cout << "Deportista encontrado!!" << endl << endl;
+	cout << "A continuacion se detalla el historial de pagos: " << endl;
 	cout << gym->reportePagosDeportista(id) << endl;
 	system("pause");
 }

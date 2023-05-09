@@ -40,6 +40,7 @@ public:
 	void listarDeportistasActivos();
 	void listarDeportistasInactivos();
 	void listarDeportistasMorosos();
+	void deportistasMorosos();
 	bool deportistaMoroso(string);
 	
 

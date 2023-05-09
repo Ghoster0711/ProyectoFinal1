@@ -26,8 +26,8 @@ int HistorialDePago::getMesPagado() { return mesPagado; }
 string HistorialDePago::toString() {
 	stringstream show;
 	//  Fecha de pago               Mes pagado               Monto Cancelado
-	show << "   (" << fecha->getDia() << "/ " << fecha->getMes() << "/ " << fecha->getAnio() <<" )" << "        "
-		<< convierteMes(mesPagado) << "       " << montoAPagar << endl;
+	show << " (" << fecha->getDia() << "/ " << fecha->getMes() << "/ " << fecha->getAnio() <<")" << "           "
+		<< convierteMes(mesPagado) << "               " << montoAPagar << endl;
 
 	return show.str();
 }
