@@ -73,7 +73,7 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 	double est, masa, peso, grasa;
 	int dia, mes, anio, horas, iron, ganados;
 	char sex;
-	if (gym->getCOC()->getPrimero() != NULL) {
+	//if (gym->getCOC()->getPrimero() != NULL) {
 		try {
 			system("cls");
 			cout << "Control de Deportistas >> Ingreso Nuevo Deportista" << endl << endl;
@@ -119,11 +119,11 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		Deportista* d = new Triatlonista(id, string(nom), tel, x, sex, est, iron, ganados, horas, 0.0, masa, peso, grasa);
 		gym->getCOD()->ingresar(*d);
 		cout << "Deportista ingresado!!" << endl;
-	}
-	else {
+	//}
+	/*else {
 		system("cls");
 		cout << "ERROR: No existen cursos" << endl;
-	}
+	}*/
 	system("pause");
 }
 

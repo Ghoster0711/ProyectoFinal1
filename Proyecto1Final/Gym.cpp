@@ -311,8 +311,8 @@ string Gym::registroNuevoPago(string id,int cuotas) {
 	int anio = fecha->getAnio();
 
 	int diaAux = fecha->getDia();
-	int mesAux = fecha->getDia();
-	int anioAux = fecha->getDia();
+	int mesAux = fecha->getMes();
+	int anioAux = fecha->getAnio();
 
 	while (cuotas != 0) {
 		if (mes > 12) {
