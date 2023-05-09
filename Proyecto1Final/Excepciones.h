@@ -3,41 +3,40 @@
 #include<sstream>
 
 using namespace std;
-//Abstrac 
-class Excepciones {
+
+class Excepciones {  //Case abstracta para la creacion de distintos tipos de Excepciones 
 public:
 	Excepciones();
 	virtual ~Excepciones();
 	virtual string toString() const = 0;
 };
 
-//Excepcion existe un grupo con x codigo
-class ExcepcionCodigoExiste : public Excepciones {
+
+class ExcepcionCodigoExiste : public Excepciones {   //Excepcion que ya existe un curso con algun codigo
 public:
 	ExcepcionCodigoExiste();
 	virtual ~ExcepcionCodigoExiste();
 	string toString() const;
 };
 
-//Excepcion que no existe un grupo con x codigo
-class ExcepcionCodigoNoExiste : public Excepciones {
+
+class ExcepcionCodigoNoExiste : public Excepciones {  //Excepcion que no existe un curso con algun codigo
 public:
 	ExcepcionCodigoNoExiste();
 	virtual ~ExcepcionCodigoNoExiste();
 	string toString() const;
 };
 
-
-//Excepcion que no existe un deportista con x ID 
-class ExcepcionIDNoExiste : public Excepciones {
+ 
+class ExcepcionIDNoExiste : public Excepciones {   //Excepcion que no existe un deportista con algun ID
 public:
 	ExcepcionIDNoExiste();
 	virtual ~ExcepcionIDNoExiste();
 	string toString() const;
 };
 
-//Excepcion que un deportista ya existe 
-class ExcepcionIDExiste : public Excepciones {
+
+class ExcepcionIDExiste : public Excepciones {    //Excepcion que ya existe un deportista con algun ID 
 public:
 	ExcepcionIDExiste();
 	virtual ~ExcepcionIDExiste();
