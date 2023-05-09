@@ -11,7 +11,16 @@ Gym::Gym() {
 }
 
 
-Gym::~Gym() {}
+Gym::~Gym() {
+	if (COD->getPrimero() != NULL)
+		delete COD;
+	if (COC->getPrimero() != NULL)
+		delete COC;
+	if (COHP->getPrimero() != NULL)
+		delete COHP;
+	if (fecha != NULL)
+		delete fecha;
+}
 
 
 Contenedor<Deportista>* Gym::getCOD() const { return COD; }

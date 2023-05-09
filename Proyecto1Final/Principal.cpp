@@ -14,7 +14,7 @@ int main() {
 	while (salir) {
 		try {
 			Interfaz::menu();
-			cin >> opcion;
+			opcion = entradaInt();
 			if (opcion < 1 || opcion > 6) 
 				throw(ExcepcionRango());
 			
@@ -28,7 +28,7 @@ int main() {
 			do {
 				try {
 					Interfaz::administracionGeneral();
-					cin >> op;
+				    op = entradaInt();
 					if (op < 1 || op > 3)
 						throw(ExcepcionRango());
 				}
@@ -50,7 +50,7 @@ int main() {
 			do {
 				try {
 					Interfaz::controlDeDeportistas();
-					cin >> op;
+					op = entradaInt();
 					if (op < 1 || op > 5)
 						throw(ExcepcionRango());
 				}
@@ -78,7 +78,7 @@ int main() {
 			do {
 				try {
 					Interfaz::controlDeCursos();
-					cin >> op;
+					op = entradaInt();
 					if (op < 1 || op > 4)
 						throw(ExcepcionRango());
 				}
@@ -103,7 +103,7 @@ int main() {
 			do {
 				try {
 					Interfaz::controlDeGrupos();
-					cin >> op;
+					op = entradaInt();
 					if (op < 1 || op > 7)
 						throw(ExcepcionRango());
 				}
@@ -137,7 +137,7 @@ int main() {
 			do {
 				try {
 					Interfaz::controlPagos();
-					cin >> op;
+					op = entradaInt();
 					if (op < 1 || op > 3)
 						throw(ExcepcionRango());
 				}
@@ -156,6 +156,7 @@ int main() {
 			} while (op != 3);
 		}break;
 		case 6: {
+			delete gym;
 			salir = false;
 		}break;
 		}

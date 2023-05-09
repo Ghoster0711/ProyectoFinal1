@@ -6,9 +6,9 @@ void Interfaz::bienvenida(Gym* gym) {
 	int d, m, a;
 	cout << "Bienvenido Gimnasio UNAfitness" << endl;
 	cout << "Ingrese la fecha actual(dd mm aaaa) " << endl;
-	cout << "Dia: "; cin >> d;
-	cout << "Mes: "; cin >> m;	
-	cout << "Anio: "; cin >> a;
+	cout << "Dia: "; d = entradaInt();
+	cout << "Mes: "; m = entradaInt();	
+	cout << "Anio: "; a = entradaInt();
 	Fecha* fecha = new Fecha(d, m, a);
 	gym->setFecha(fecha);
 	system("pause");
@@ -56,7 +56,7 @@ void Interfaz::mensualidad(Gym* gym) {
 	double men;
 	cout << "Administracion General >> Mensualidad del Gimnasio" << endl << endl;
 	cout << "Ingrese la mensualidad: ";
-	cin >> men;
+	men = entradaDouble();
 	gym->setMensualidad(men);
 }
 
@@ -76,9 +76,9 @@ void Interfaz::controlDeDeportistas() {
 
 void Interfaz::ingresaDeportista(Gym* gym) {
 	string id, tel, nom;
-	double est, masa, peso, grasa;
-	int dia, mes, anio, horas, iron, ganados;
-	char sex;
+	double est = 0, masa = 0, peso = 0, grasa = 0;
+	int dia = 0, mes = 0, anio = 0, horas = 0, iron = 0, ganados = 0;
+	char sex = 'n';
 	if (gym->getCOC()->getPrimero() != NULL) {
 		try {
 			system("cls");
@@ -100,27 +100,27 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		ignorar();
 		nom = recibirGetline();
 		cout << "Fecha de nacimiento(dd mm aaaa): " << endl;
-		cout << "Dia: "; cin >> dia;
-		cout << "Mes: "; cin >> mes;
-		cout << "Anio: "; cin >> anio;
+		cout << "Dia: "; dia = entradaInt();
+		cout << "Mes: "; mes = entradaInt();
+		cout << "Anio: "; anio = entradaInt();
 		cout << "Sexo(f/m): ";
-		cin >> sex;
+		sex = entradaSexo();
 		cout << "Horas Entrenamiento: ";
-		cin >> horas;
+		horas = entradaInt();
 		cout << "Cantidad de partidos IronMan: ";
-		cin >> iron;
+		iron = entradaInt();
 		cout << "Cantidad de triatlones ganados: ";
-		cin >> ganados;
+		ganados = entradaInt();
 		cout << endl;
 		cout << "Datos Biometricos basicos >>" << endl;
 		cout << "Estatura: ";
-		cin >> est;
+		est = entradaDouble();
 		cout << "Peso: ";
-		cin >> peso;
+		peso = entradaDouble();
 		cout << "Grasa Corporal: ";
-		cin >> grasa;
+		grasa = entradaDouble();
 		cout << "Masa Muscular: ";
-		cin >> masa;
+		masa = entradaDouble();
 		Fecha* x = new Fecha(dia, mes, anio);
 		Deportista* d = new Triatlonista(id, string(nom), tel, x, sex, est, iron, ganados, horas, 0.0, masa, peso, grasa);
 		gym->getCOD()->ingresar(*d);
@@ -169,7 +169,7 @@ void Interfaz::modificaDeportista(Gym* gym) {
 				<< "12. Cantidad de triatlones ganados" << endl
 				<< "13. Volver" << endl
 				<< "Digite una opcion del menu: ";
-			cin >> op;
+			op = entradaInt();
 			if (op < 1 || op > 13)
 				throw(ExcepcionRango());
 		}
@@ -183,9 +183,9 @@ void Interfaz::modificaDeportista(Gym* gym) {
 
 void Interfaz::modificacionesDeportista(Deportista* depo, int op) {
 	string text;
-	double num1;
-	int num2, d, m ,a;
-	char s;
+	double num1 = 0;
+	int num2 = 0, d = 0, m = 0,a = 0;
+	char s = 'n';
 	switch (op) {
 	case 1: {
 		cout << "Digite el nuevo nombre: ";
@@ -206,85 +206,72 @@ void Interfaz::modificacionesDeportista(Deportista* depo, int op) {
 	}break;
 	case 3: {
 		cout << "Digite la nueva fecha de nacimiento(dd mm aaaa): " << endl;
-		cout << "Dia: "; cin >> d;
-		cout << "Mes: "; cin >> m;
-		cout << "Anio: "; cin >> a;
+		cout << "Dia: "; d = entradaInt();
+		cout << "Mes: "; m = entradaInt();
+		cout << "Anio: "; a = entradaInt();
 		depo->setFecha(new Fecha(d, m, a));
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 4: {
 		cout << "Digite el nuevo sexo('f''m'): ";
-		cin >> s;
+		s = entradaSexo();
 		depo->setSexo(s);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 5: {
 		cout << "Digite la nueva estatura: ";
-		cin >> num1;
+		num1 = entradaDouble();
 		depo->setEstatura(num1);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 6: {
 		cout << "Digite el nuevo peso: ";
-		cin >> num1;
+		num1 = entradaDouble();
 		depo->setPeso(num1);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 7: {
 		cout << "Digite el nuevo porcentaje de grasa corporal: ";
-		cin >> num1;
+		num1 = entradaDouble();
 		depo->setProcGrasaCorporal(num1);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 8: {
 		cout << "Digite el nuevo porcentaje de masa muscular: ";
-		cin >> num1;
+		num1 = entradaDouble();
 		depo->setMasaMuscular(num1);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 9: {
-		try {
-			if (depo->getEstado() == "Activo")
-				throw(ExcepcionCambioEstado());
-		}
-		catch (ExcepcionCambioEstado& e) {
-			cout << e.toString() << endl;
-			system("pause");
-			return;
-		}
 		cout << "Digite el estado del deportista (Activo/Inactivo)";
-		cin >> text;
-		if (text == "Inactivo") {
-			depo->setEstado(text);
-			cout << "Hecho!!" << endl;
-		}
-		else
-			cout << "Solo se puede cambiar a Inactivo" << endl;
+		text = entradaActivoInactivo();
+		depo->setEstado(text);
+		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 10: {
 		cout << "Digite las nuevas horas de entrenamiento: ";
-		cin >> num2;
+		num2 = entradaInt();
 		depo->setHorasEntrenadas(num2);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 11: {
 		cout << "Digite la nueva cantidad de partidos Iron Main: ";
-		cin >> num2;
+		num2 = entradaInt();
 		depo->setCantParticEnIronMan(num2);
 		cout << "Hecho!!" << endl;
 		system("pause");
 	}break;
 	case 12: {
 		cout << "Digite la nueva cantidad de triatlones ganados: ";
-		cin >> num2;
+		num2 = entradaInt();
 		depo->setCantTriatGanados(num2);
 		cout << "Hecho!!" << endl;
 		system("pause");
@@ -293,8 +280,9 @@ void Interfaz::modificacionesDeportista(Deportista* depo, int op) {
 }
 
 void Interfaz::listaDeporsitas(Gym* gym) {
-	int op;
-	gym->deportistasMorosos();
+
+	int op = 0;
+  gym->deportistasMorosos();
 	do {
 		try {
 			system("cls");
@@ -305,7 +293,7 @@ void Interfaz::listaDeporsitas(Gym* gym) {
 				<< "4. Listado de deportistas en morosidad" << endl
 				<< "5. Volver" << endl
 				<< endl << "Digite una opcion del menu: ";
-			cin >> op;
+			op = entradaInt();
 			if (op < 1 || op > 5)
 				throw(ExcepcionRango());
 		}
@@ -401,7 +389,7 @@ void Interfaz::controlDeCursos() {
 
 void Interfaz::ingresarCurso(Gym* gym) {
 	string cod, nom, niv, descrip;
-	int cant;
+	int cant = 0;
 	try {
 		system("cls");
 		cout << "Control de Cursos >> Ingreso Nuevo Curso" << endl << endl;
@@ -420,7 +408,7 @@ void Interfaz::ingresarCurso(Gym* gym) {
 	cout << "Digite el nivel: ";
 	cin >> niv;
 	cout << "Cantidad de grupos: ";
-	cin >> cant;
+	cant = entradaInt();
 	cout << "Descripcion: ";
 	ignorar();
 	descrip = recibirGetline();
@@ -488,7 +476,7 @@ void Interfaz::modificarCurso(Gym* gym) {
 				<< "5. Cantidad de grupos" << endl
 				<< "6. Volver" << endl
 				<< "Digite una opcion del menu: ";
-			cin >> op;
+			op = entradaInt();
 			if (op < 1 || op > 6)
 				throw(ExcepcionRango());
 		}
@@ -536,7 +524,7 @@ void Interfaz::modificacionesCurso(Curso* curso, int op) {
 	}break;
 	case 5: {
 		cout << "Digite la nueva cantidad de grupos:" << endl;
-		cin >> num;
+		num = entradaInt();
 		if (curso->getCantidadGrupos() < num) {
 			curso->setCantidadGrupos(num);
 			cout << "Hecho!!" << endl;
@@ -592,22 +580,22 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	ignorar();
 	nom = recibirGetline();
 	cout << "Digite el cupo maximo: ";
-	cin >> cup;
+	cup = entradaInt();;
 	cout << "Fecha de inicio(dd/mm/aaaa): " << endl;
-	cout << "Dia: "; cin >> dia;
-	cout << "Mes: "; cin >> mes;
-	cout << "Anio: "; cin >> anio;
+	cout << "Dia: "; dia = entradaInt();
+	cout << "Mes: "; mes = entradaInt();
+	cout << "Anio: "; anio = entradaInt();
 	cout << "Semanas de duracion: ";
-	cin >> semas;
+	semas = entradaInt();
 	cout << "Horario: " << endl;
 	cout << "Digite el dia de la semana (l,k,m,j,v,s,d): ";
-	cin >> d;
+	d = entradaSemana();
 	cout << "Digite la hora de inicio (en hora militar): " << endl;
-	cout << "Hora: "; cin >> h1;
-	cout << "Minuto: "; cin >> m1;
+	cout << "Hora: "; h1 = entradaInt();
+	cout << "Minuto: "; m1 = entradaInt();
 	cout << "Digite la hora de finalizacion (en hora militar): " << endl;
-	cout << "Hora: "; cin >> h2;
-	cout << "Minuto: "; cin >> m2;
+	cout << "Hora: "; h2 = entradaInt();
+	cout << "Minuto: "; m2 = entradaInt();
 
 	Fecha* fechaInicio = new Fecha(dia, mes, anio);
 	Hora* horaInicio = new Hora(h1, m1);
@@ -648,7 +636,7 @@ void Interfaz::modificarGrupo(Gym* gym) {
 		cout << "Control de Grupos >> Modificacion de Grupo Especifico" << endl << endl;
 		cout << "Curso encontrado!!" << endl << endl;
 		cout << "Digite el numero de grupo: ";
-		cin >> num;
+		num = entradaInt();
 		if(gym->encontrarGrupo(gym->retornaCurso(cod), num) != true) // Si NO existe el numero de grupo en el curso
 			throw(ExcepcionGrupoNoExiste());
 	}
@@ -674,7 +662,7 @@ void Interfaz::modificarGrupo(Gym* gym) {
 				<< "8. Hora de finalizacion" << endl
 				<< "9. Volver" << endl
 				<< "Digite una opcion del menu: ";
-			cin >> op;
+			op = entradaInt();
 			if (op < 1 || op > 9)
 				throw(ExcepcionRango());
 		}
@@ -709,46 +697,46 @@ void Interfaz::modificacionesGrupo(Grupo* grupo, int op) {
 		break;
 	case 3:
 		cout << "Digite el nuevo cupo maximo:" << endl;
-		cin >> num;
+		num = entradaInt();
 		grupo->setCupoMaximo(num);
 		cout << "Hecho!!" << endl;
 		system("pause");
 		break;
 	case 4:
 		cout << "Digite la nueva fecha de inicio(dd/mm/aaaa):" << endl;
-		cout << "Dia: "; cin >> d;
-		cout << "Mes: "; cin >> m;
-		cout << "Anio: "; cin >> a;
+		cout << "Dia: "; d = entradaInt();
+		cout << "Mes: "; m = entradaInt();
+		cout << "Anio: "; a = entradaInt();
 		grupo->setFecha(new Fecha(d, m, a));
 		cout << "Hecho!!" << endl;
 		system("pause");
 		break;
 	case 5:
 		cout << "Digite la nueva cantidad de semanas de duracion:" << endl;
-		cin >> num;
+		num = entradaInt();
 		grupo->setDurarcion(num);
 		cout << "Hecho!!" << endl;
 		system("pause");
 		break;
 	case 6:
-		cout << "Digite el nuevo dia de la semana:" << endl;
-		cin >> letra;
+		cout << "Digite el nuevo dia de la semana (l,k,m,j,v,s,d):" << endl;
+		letra = entradaSemana();
 		grupo->getHorario()->setDia(letra);
 		cout << "Hecho!!" << endl;
 		system("pause");
 		break;
 	case 7:
 		cout << "Digite la nueva hora de incio:" << endl;
-		cout << "Hora: "; cin >> d;
-		cout << "Minuto: "; cin >> m;
+		cout << "Hora: "; d = entradaInt();
+		cout << "Minuto: "; m = entradaInt();
 		grupo->getHorario()->setHoraI(new Hora(d, m));
 		cout << "Hecho!!" << endl;
 		system("pause");
 		break;
 	case 8:
 		cout << "Digite la nueva hora de finalizacion:" << endl;
-		cout << "Hora: "; cin >> d;
-		cout << "Minuto: "; cin >> m;
+		cout << "Hora: "; d = entradaInt();
+		cout << "Minuto: "; m = entradaInt();
 		grupo->getHorario()->setHoraF(new Hora(d, m));
 		cout << "Hecho!!" << endl;
 		system("pause");
@@ -804,7 +792,7 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 				cout << "# Grupo         Dia           Horario             Cupo           Cantidad" << endl;
 				gym->listadoGruposParaDepo(gym->retornaCurso(cod));
 				cout << "Digite el numero de grupo deseado: " << endl;
-				cin >> op;
+				op = entradaInt();
 				if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
 					throw(ExcepcionGrupoNoExiste());
 				Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
@@ -824,9 +812,9 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 			cout << "Grupo encontrado!!" << endl;
 			Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
 			cout << "Digite la fecha de matricula (dd/mm/aaaa):" << endl;
-			cout << "Dia: "; cin >> dia;
-			cout << "Mes: "; cin >> mes;
-			cout << "Anio: "; cin >> anio;
+			cout << "Dia: "; dia = entradaInt();
+			cout << "Mes: "; mes = entradaInt();
+			cout << "Anio: "; anio = entradaInt();
 			Fecha* fecha = new Fecha(dia, mes, anio);
 
 			grupo->getListaDepo()->clonDepo(gym->retornaDeportista(id));
@@ -868,7 +856,7 @@ void Interfaz::reporteDeGrupo(Gym* gym) {
 		cout << "Listado de grupos para el curso seleccionado: " << endl;
 		gym->listaNumerosGrupos(gym->retornaCurso(cod));
 		cout << "Digite el numero de grupo deseado: " << endl;
-		cin >> op;
+		op = entradaInt();
 		if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
 			throw(ExcepcionGrupoNoExiste());
 	}
@@ -911,7 +899,7 @@ void Interfaz::reporteDeportistasEnGrupo(Gym* gym) {
 		cout << "Listado de grupos para el curso seleccionado: " << endl;
 		gym->listaNumerosGrupos(gym->retornaCurso(cod));
 		cout << "Digite el numero de grupo deseado: " << endl;
-		cin >> op;
+		op = entradaInt();
 		if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
 			throw(ExcepcionGrupoNoExiste());
 	}
@@ -966,7 +954,7 @@ void Interfaz::cancelacionDeMatriculaEnGrupo(Gym* gym) {
 			cout << "Listado de grupos para el curso seleccionado: " << endl;
 			gym->listaNumerosGrupos(gym->retornaCurso(cod));
 			cout << "Digite el numero de grupo deseado: " << endl;
-			cin >> op;
+			op = entradaInt();
 			if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
 				throw(ExcepcionGrupoNoExiste());
 			Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
@@ -1024,7 +1012,7 @@ void Interfaz::registroNuevoPago(Gym* gym) {
 	}
 	cout << "Deportista encontrado!!" << endl << endl;
 	cout << "Cuantas cuotas desea cancelar o pagar: ";
-	cin >> cuotas;
+	cuotas = entradaInt();
 	cout << "Monto a pagar: " << gym->getMensualidad() * cuotas << "(" << gym->getMensualidad()
 		<< " x " << cuotas << ")" << endl;
 	cout << "Excelente se han cancelado las siguientes cuotas: " << endl;
