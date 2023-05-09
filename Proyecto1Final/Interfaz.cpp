@@ -27,6 +27,7 @@ void Interfaz::menu() {
 
 
 //--------------------------------Administracion------------------------------------------
+
 void Interfaz::administracionGeneral() {
 	system("cls");
 	cout << "\t\t ADMINISTRACION GENERAL" << endl
@@ -38,12 +39,16 @@ void Interfaz::administracionGeneral() {
 
 void Interfaz::nombreGym(Gym* gym) {
 	system("cls");
-	string nombre;
+	Fecha* fecha = new Fecha(9, 5, 2023);
+	gym->setFecha(fecha);
+	cout << "Fecha actualizada" << endl;
+	/*string nombre;
 	cout << "Administracion General >> Nombre del Gimnasio" << endl << endl;
 	cout << "Ingrese el nombre del gimnasio: ";
 	ignorar();
 	nombre = recibirGetline();
-	gym->setNombre(nombre);
+	gym->setNombre(nombre);*/
+	system("pause");
 }
 
 void Interfaz::mensualidad(Gym* gym) {
@@ -57,6 +62,7 @@ void Interfaz::mensualidad(Gym* gym) {
 
 
 //-------------------------------Control de Deportistas---------------------------------------
+
 void Interfaz::controlDeDeportistas() {
 	system("cls");
 	cout << "\t\t CONTROL DE DEPORTISTAS" << endl
@@ -73,7 +79,7 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 	double est, masa, peso, grasa;
 	int dia, mes, anio, horas, iron, ganados;
 	char sex;
-	//if (gym->getCOC()->getPrimero() != NULL) {
+	if (gym->getCOC()->getPrimero() != NULL) {
 		try {
 			system("cls");
 			cout << "Control de Deportistas >> Ingreso Nuevo Deportista" << endl << endl;
@@ -119,11 +125,11 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		Deportista* d = new Triatlonista(id, string(nom), tel, x, sex, est, iron, ganados, horas, 0.0, masa, peso, grasa);
 		gym->getCOD()->ingresar(*d);
 		cout << "Deportista ingresado!!" << endl;
-	//}
-	/*else {
+	}
+	else {
 		system("cls");
 		cout << "ERROR: No existen cursos" << endl;
-	}*/
+	}
 	system("pause");
 }
 
@@ -288,6 +294,7 @@ void Interfaz::modificacionesDeportista(Deportista* depo, int op) {
 
 void Interfaz::listaDeporsitas(Gym* gym) {
 	int op;
+	gym->deportistasMorosos();
 	do {
 		try {
 			system("cls");
@@ -381,6 +388,7 @@ void Interfaz::detalleDeportistaEspecifico(Gym* gym) {
 }
 
 //--------------------------------Control de Cursos------------------------------------------
+
 void Interfaz::controlDeCursos() {
 	system("cls");
 	cout << "\t\t CONTROL DE CURSOS" << endl
@@ -752,6 +760,7 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 	int dia, mes, anio;
 	int op;
 	bool acceso = true;
+	gym->deportistasMorosos();
 	try {
 		system("cls");
 		cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
@@ -917,7 +926,6 @@ void Interfaz::reporteDeportistasEnGrupo(Gym* gym) {
 		system("pause");
 }
 
-
 void Interfaz::cancelacionDeMatriculaEnGrupo(Gym* gym) {
 	string id, cod, idd;
 	int op;
@@ -986,6 +994,7 @@ void Interfaz::cancelacionDeMatriculaEnGrupo(Gym* gym) {
 
 
 //--------------------------------Control de Pagos------------------------------------------
+
 void Interfaz::controlPagos() {
 	system("cls");
 	cout << "\t\t CONTROL PAGOS" << endl
@@ -1027,6 +1036,7 @@ void Interfaz::registroNuevoPago(Gym* gym) {
 
 
 }
+
 void Interfaz::reporteDePagosDeportista(Gym* gym) {
 	string id;
 	try {
