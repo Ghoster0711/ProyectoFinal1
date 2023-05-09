@@ -156,6 +156,7 @@ int main() {
 			} while (op != 3);
 		}break;
 		case 6: {
+			delete gym;
 			salir = false;
 		}break;
 		}
