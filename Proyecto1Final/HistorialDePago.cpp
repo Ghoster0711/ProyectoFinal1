@@ -13,7 +13,10 @@ HistorialDePago::HistorialDePago(string Id, Fecha* fec, double monto, int m) {
 	mesPagado = m;
 }
 
-HistorialDePago::~HistorialDePago() {}
+HistorialDePago::~HistorialDePago() {
+	if (fecha != NULL)
+		delete fecha;
+}
 
 string HistorialDePago::getId() { return id; }
 
