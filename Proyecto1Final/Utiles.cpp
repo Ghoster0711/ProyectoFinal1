@@ -60,7 +60,7 @@ int entradaInt()
 				cin.clear();
 				cin.ignore();
 				acceso = false;
-				throw "Error: entrada no válida, la entrada debe ser un numero, vuelva a ingresar";
+				throw "Error: entrada no vÃ¡lida, la entrada debe ser un numero, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -84,7 +84,7 @@ double entradaDouble()
 				cin.clear();
 				cin.ignore();
 				acceso = false;
-				throw "Error: entrada no válida, la entrada debe ser un numero vuelva a ingresar";
+				throw "Error: entrada no vÃ¡lida, la entrada debe ser un numero vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -105,7 +105,7 @@ string entradaActivoInactivo()
 			cin >> input;
 			if (input != "Activo" || input != "Inactivo") {
 				acceso = false;
-				throw "Error: entrada no válida debe ser Activo o Inactivo, vuelva a ingresar";
+				throw "Error: entrada no vÃ¡lida debe ser Activo o Inactivo, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -126,7 +126,7 @@ char entradaSexo()
 			cin >> input;
 			if (input != 'f' && input != 'm') {
 				acceso = false;
-				throw "Error: entrada no válida debe ser f o m, vuelva a ingresar";
+				throw "Error: entrada no vÃ¡lida debe ser f o m, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -147,7 +147,7 @@ char entradaSemana()
 			cin >> input;
 			if (input != 'l' && input != 'k' && input != 'm' && input != 'j' && input != 'v' && input != 's' && input != 'd') {
 				acceso = false;
-				throw "Error: entrada no válida debe ser f / k / m / j / v / s / d";
+				throw "Error: entrada no vÃ¡lida debe ser l / k / m / j / v / s / d";
 			}
 			else
 				acceso = true;
