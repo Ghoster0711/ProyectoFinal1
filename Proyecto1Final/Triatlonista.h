@@ -31,6 +31,11 @@ public:
 	double getTemPromedio();
 	string getEstado();
 
+	int getCantGrupo();
+	void setCantGrupo(int);
+	void sumar();
+	void restar();
+
 	void setEstado(string);
 	void setHorasEntrenadas(int);
 	void setTemPromedio(double);

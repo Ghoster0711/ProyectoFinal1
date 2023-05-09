@@ -51,6 +51,7 @@ public:
 
 	// ------Grupos------
 	string encontrarDeportistaEnGrupos(string);
+	bool seEncontraDeportistaEnGrupos(string ,string);
 	void listadoGrupos(Curso*);
 	bool encontrarGrupo(Curso*, int);
 	Grupo* retornaGrupo(Curso*, int);

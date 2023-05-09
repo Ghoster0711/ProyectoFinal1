@@ -184,6 +184,21 @@ string Gym::encontrarDeportistaEnGrupos(string ced)
 	return show.str();
 }
 
+bool Gym::seEncontraDeportistaEnGrupos(string cod, string ced)
+{
+	Curso* cur = retornaCurso(cod);
+	Iterador<Grupo>* ite2 = new Iterador<Grupo>(cur->getCOG()->getPrimero());
+	while (ite2->getPNodo() != NULL) {
+		if (ite2->getPNodo()->getDato() != NULL) {
+			if (ite2->getPNodo()->getDato()->getListaDepo()->encontrarDeportista(ced) == true) {
+				return true;
+			}
+		}
+		ite2->operator++();
+	}
+	return false;
+}
+
 void Gym::listadoGrupos(Curso* cur)
 {
 	Iterador<Grupo>* ite = new Iterador<Grupo>(cur->getCOG()->getPrimero());
