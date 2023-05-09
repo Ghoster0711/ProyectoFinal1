@@ -22,6 +22,8 @@ Grupo:: ~Grupo() {
 		delete fecha;
 	if (horario != NULL)
 		delete horario;
+	if (listaDepo->getPrimero() != NULL)
+		delete listaDepo;
 }
 
 string Grupo::getIDInstructor() {
