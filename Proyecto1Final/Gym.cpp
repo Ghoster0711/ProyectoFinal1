@@ -11,7 +11,16 @@ Gym::Gym() {
 }
 
 
-Gym::~Gym() {}
+Gym::~Gym() {
+	if (COD->getPrimero() != NULL)
+		delete COD;
+	if (COC->getPrimero() != NULL)
+		delete COC;
+	if (COHP->getPrimero() != NULL)
+		delete COHP;
+	if (fecha != NULL)
+		delete fecha;
+}
 
 
 Contenedor<Deportista>* Gym::getCOD() const { return COD; }
@@ -125,6 +134,10 @@ void Gym::deportistasMorosos() {
 			if (deportistaMoroso(ite->getPNodo()->getDato()->getCedula()) == true) {
 				ite->getPNodo()->getDato()->setEstado("Moroso");
 			}
+			else {
+				if(ite->getPNodo()->getDato()->getEstado() != "Inactivo")
+					ite->getPNodo()->getDato()->setEstado("Activo");
+			}
 		}
 		ite->operator++();
 	}
@@ -133,11 +146,11 @@ void Gym::deportistasMorosos() {
 
 bool Gym::deportistaMoroso(string id) {
 	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
-	Fecha* aux = NULL;
+	HistorialDePago* aux = NULL;
 	while (ite->getPNodo() != NULL) {
 		if (ite->getPNodo()->getDato() != NULL) {
 			if (ite->getPNodo()->getDato()->getId() == id) {
-				aux = ite->getPNodo()->getDato()->getFecha();
+				aux = ite->getPNodo()->getDato();
 				break;
 			}
 			else {
@@ -145,7 +158,7 @@ bool Gym::deportistaMoroso(string id) {
 			}
 		}
 	}
-	if (aux->getMes() < fecha->getMes() || aux->getAnio() < fecha->getAnio())
+	if (aux->getMesPagado() < fecha->getMes())
 		return true;
 	else
 		return false;
@@ -311,8 +324,8 @@ string Gym::registroNuevoPago(string id,int cuotas) {
 	int anio = fecha->getAnio();
 
 	int diaAux = fecha->getDia();
-	int mesAux = fecha->getDia();
-	int anioAux = fecha->getDia();
+	int mesAux = fecha->getMes();
+	int anioAux = fecha->getAnio();
 
 	while (cuotas != 0) {
 		if (mes > 12) {

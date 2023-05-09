@@ -33,7 +33,16 @@ Contenedor<T>::Contenedor() {
 }
 
 template<class T>
-Contenedor<T>::~Contenedor() {}
+Contenedor<T>::~Contenedor() {
+	Nodo<T>* actual = _primero;
+	Nodo<T>* siguiente;
+	while (actual != nullptr) {
+		siguiente = actual->getSiguiente();
+		delete actual;
+		actual = siguiente;
+	}
+	_primero = nullptr;
+}
 
 template<class T>
 inline int Contenedor<T>::getCantidad()

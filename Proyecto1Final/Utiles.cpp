@@ -48,3 +48,116 @@ string convierteMes(int m) {
 	}
 	return "";
 }
+
+int entradaInt()
+{
+	int num;
+	bool acceso = true;
+	do {
+		try {
+			cin >> num;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore();
+				acceso = false;
+				throw "Error: entrada no válida, la entrada debe ser un numero, vuelva a ingresar";
+			}
+			else
+				acceso = true;
+
+		}
+		catch (const char* error) {
+			cerr << error << endl;
+		}
+	} while (acceso != true);
+	return num;
+}
+
+double entradaDouble()
+{
+	double num;
+	bool acceso = true;
+	do {
+		try {
+			cin >> num;
+			if (cin.fail()) {
+				cin.clear();
+				cin.ignore();
+				acceso = false;
+				throw "Error: entrada no válida, la entrada debe ser un numero vuelva a ingresar";
+			}
+			else
+				acceso = true;
+		}
+		catch (const char* error) {
+			cerr << error << endl;
+		}
+	} while (acceso != true);
+	return num;
+}
+
+string entradaActivoInactivo()
+{
+	string input;
+	bool acceso = true;
+	do {
+		try {
+			cin >> input;
+			if (input != "Activo" || input != "Inactivo") {
+				acceso = false;
+				throw "Error: entrada no válida debe ser Activo o Inactivo, vuelva a ingresar";
+			}
+			else
+				acceso = true;
+		}
+		catch (const char* error) {
+			cerr << error << endl;
+		}
+	} while (acceso != true);
+	return input;
+}
+
+char entradaSexo()
+{
+	char input;
+	bool acceso = true;
+	do {
+		try {
+			cin >> input;
+			if (input != 'f' && input != 'm') {
+				acceso = false;
+				throw "Error: entrada no válida debe ser f o m, vuelva a ingresar";
+			}
+			else
+				acceso = true;
+		}
+		catch (const char* error) {
+			cerr << error << endl;
+		}
+	} while (acceso != true);
+	return input;
+}
+
+char entradaSemana()
+{
+	char input;
+	bool acceso = true;
+	do {
+		try {
+			cin >> input;
+			if (input != 'l' && input != 'k' && input != 'm' && input != 'j' && input != 'v' && input != 's' && input != 'd') {
+				acceso = false;
+				throw "Error: entrada no válida debe ser l / k / m / j / v / s / d";
+			}
+			else
+				acceso = true;
+		}
+		catch (const char* error) {
+			cerr << error << endl;
+		}
+	} while (acceso != true);
+	return input;
+} 
+
+
+
