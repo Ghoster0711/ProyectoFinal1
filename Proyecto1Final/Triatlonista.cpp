@@ -32,6 +32,11 @@ int Triatlonista::getHorasEntrenadas() { return ciclista->getHorasEntrenadas(); 
 double Triatlonista::getTemPromedio() { return ciclista->getTemPromedio(); }
 string Triatlonista::getEstado() { return estado; }
 
+int Triatlonista::getCantGrupo() { return cantGrupo; }
+void Triatlonista::setCantGrupo(int x) { cantGrupo = x; }
+void Triatlonista::sumar() { cantGrupo++; }
+void Triatlonista::restar() { cantGrupo--; }
+
 void Triatlonista::setEstado(string est) { estado = est; }
 void Triatlonista::setHorasEntrenadas(int horas) { ciclista->setHorasEntrenadas(horas); }
 void Triatlonista::setTemPromedio(double tem) { ciclista->setTemPromedio(tem); }

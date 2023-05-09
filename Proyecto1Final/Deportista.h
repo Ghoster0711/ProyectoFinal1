@@ -10,6 +10,7 @@ protected:
 	string telefono;
 	Fecha* fecha;
 	string estado;
+	int cantGrupo;
 public:
 	Deportista(string, string, string, Fecha*);
 	virtual ~Deportista();
@@ -29,6 +30,13 @@ public:
 	virtual int getHorasEntrenadas() = 0;
 	virtual double getTemPromedio() = 0;
 	virtual string getEstado() = 0;
+
+	virtual int getCantGrupo() = 0;
+	virtual void setCantGrupo(int) = 0;
+	virtual void sumar() = 0;
+	virtual void restar() = 0;
+
+
 
 	virtual void setEstado(string) = 0;
 	virtual void setHorasEntrenadas(int) = 0;

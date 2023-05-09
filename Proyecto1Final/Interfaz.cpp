@@ -73,7 +73,7 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 	double est, masa, peso, grasa;
 	int dia, mes, anio, horas, iron, ganados;
 	char sex;
-	//if (gym->getCOC()->getPrimero() != NULL) {
+	if (gym->getCOC()->getPrimero() != NULL) {
 		try {
 			system("cls");
 			cout << "Control de Deportistas >> Ingreso Nuevo Deportista" << endl << endl;
@@ -119,11 +119,11 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		Deportista* d = new Triatlonista(id, string(nom), tel, x, sex, est, iron, ganados, horas, 0.0, masa, peso, grasa);
 		gym->getCOD()->ingresar(*d);
 		cout << "Deportista ingresado!!" << endl;
-	//}
-	/*else {
+	}
+	else {
 		system("cls");
 		cout << "ERROR: No existen cursos" << endl;
-	}*/
+	}
 	system("pause");
 }
 
@@ -414,7 +414,8 @@ void Interfaz::ingresarCurso(Gym* gym) {
 	cout << "Cantidad de grupos: ";
 	cin >> cant;
 	cout << "Descripcion: ";
-	cin >> descrip;
+	ignorar();
+	descrip = recibirGetline();
 	Curso* curso = new Curso(cod, nom, descrip, niv, cant);
 	gym->getCOC()->ingresar(*curso);
 	cout << "Curso ingresado!!" << endl;
@@ -604,8 +605,9 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	Hora* horaInicio = new Hora(h1, m1);
 	Hora* horaFinal = new Hora(h2, m2);
 	Horario* horario = new Horario(d, horaInicio, horaFinal);
-	Grupo* grupo = new Grupo(id, nom, cup, semas, fechaInicio, horario, gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() + 1); //Agregar un atributo al curso que
-	cout << "Se ha creado el grupo " << gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() << endl;     //lleve la cuenta de los grupos 
+	Grupo* grupo = new Grupo(id, nom, cup, semas, fechaInicio, horario, gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() + 1);
+	gym->retornaCurso(cod)->getCOG()->ingresar(*grupo);
+	cout << "Se ha creado el grupo " << gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() << endl;    
 
 
 	system("pause");
@@ -764,60 +766,69 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 		system("pause");
 		return;
 	}
-	try {
-		system("cls");
-		cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
-		cout << "Deportista encontrado!!" << endl;
-		cout << "Listado de cursos: " << endl;
+	if (gym->retornaDeportista(id)->getEstado() == "Activo" && gym->retornaDeportista(id)->getCantGrupo() < 4) {
+		try {
+			system("cls");
+			cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
+			cout << "Deportista encontrado!!" << endl;
+			cout << "Listado de cursos: " << endl;
 
-		 gym->listadoCurso();
+			gym->listadoCurso();
 
-		cout << "Digite el codigo del curso: ";
-		cin >> cod;
-		if (gym->encontrarCurso(cod) != true)
-			throw(ExcepcionCodigoNoExiste());
-	}
-	catch (ExcepcionCodigoNoExiste& e) {
-		cout << e.toString() << endl;
-		system("pause");
-		return;
-	}
-	try {
-		system("cls");
-		cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
-		cout << "Deportista encontrado!!" << endl;
-		cout << "Curso encontrado!!" << endl << endl;
-		cout << "Para el curso deseado existen los siguientes grupos disponibles: " << endl;
-		cout << "# Grupo         Dia           Horario             Cupo           Cantidad" << endl;
-		gym->listadoGruposParaDepo(gym->retornaCurso(cod));
-		cout << "Digite el numero de grupo deseado: " << endl;
-		cin >> op;
-		if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
-			throw(ExcepcionGrupoNoExiste());
-		Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-		if (grupo->getListaDepo()->getCantidad() < grupo->getCupoMaximo())
-			throw(ExcepcionGrupoLleno());
-	}
-	catch (ExcepcionGrupoNoExiste& e) {
-		cout << e.toString() << endl;
-		system("pause");
-		return;
-	}
-	catch (ExcepcionGrupoLleno& e) {
-		cout << e.toString() << endl;
-		system("pause");
-		return;
-	}
-	cout << "Grupo encontrado!!" << endl;
-	Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-	cout << "Digite la fecha de matricula (dd/mm/aaaa):" << endl;
-	cout << "Dia: "; cin >> dia;
-	cout << "Mes: "; cin >> mes;
-	cout << "Anio: "; cin >> anio;
-	Fecha* fecha = new Fecha(dia, mes, anio);
+			cout << "Digite el codigo del curso: ";
+			cin >> cod;
+			if (gym->encontrarCurso(cod) != true)
+				throw(ExcepcionCodigoNoExiste());
+		}
+		catch (ExcepcionCodigoNoExiste& e) {
+			cout << e.toString() << endl;
+			system("pause");
+			return;
+		}
+		if (gym->seEncontraDeportistaEnGrupos(cod, id) != true) {
+			try {
+				system("cls");
+				cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
+				cout << "Deportista encontrado!!" << endl;
+				cout << "Curso encontrado!!" << endl << endl;
+				cout << "Para el curso deseado existen los siguientes grupos disponibles: " << endl;
+				cout << "# Grupo         Dia           Horario             Cupo           Cantidad" << endl;
+				gym->listadoGruposParaDepo(gym->retornaCurso(cod));
+				cout << "Digite el numero de grupo deseado: " << endl;
+				cin >> op;
+				if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
+					throw(ExcepcionGrupoNoExiste());
+				Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
+				if (grupo->getListaDepo()->getCantidad() >= grupo->getCupoMaximo())
+					throw(ExcepcionGrupoLleno());
+			}
+			catch (ExcepcionGrupoNoExiste& e) {
+				cout << e.toString() << endl;
+				system("pause");
+				return;
+			}
+			catch (ExcepcionGrupoLleno& e) {
+				cout << e.toString() << endl;
+				system("pause");
+				return;
+			}
+			cout << "Grupo encontrado!!" << endl;
+			Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
+			cout << "Digite la fecha de matricula (dd/mm/aaaa):" << endl;
+			cout << "Dia: "; cin >> dia;
+			cout << "Mes: "; cin >> mes;
+			cout << "Anio: "; cin >> anio;
+			Fecha* fecha = new Fecha(dia, mes, anio);
 
-	grupo->getListaDepo()->ingresar(*gym->retornaDeportista(id));
-	cout << "Deportista matriculado!!" << endl;
+			grupo->getListaDepo()->clonDepo(gym->retornaDeportista(id));
+			gym->retornaDeportista(id)->sumar();
+			cout << "Deportista matriculado!!" << endl;
+		}
+		else
+			cout << "El Deportista ya existe en este curso" << endl;
+	}
+	else
+		cout << "No se puede matricular porque ya esta al limite de los cursos permitidos por deportista o no se encuentra activo" << endl;
 	system("pause");
 }
 
@@ -938,63 +949,39 @@ void Interfaz::cancelacionDeMatriculaEnGrupo(Gym* gym) {
 		system("pause");
 		return;
 	}
-	try {
-		system("cls");
-		cout << "Control de Grupos >> Cancelacion de matricula en grupo" << endl;
-		cout << "Deportista encontrado!!" << endl;
-		cout << "Curso encontrado!!" << endl << endl;
-		cout << "Listado de grupos para el curso seleccionado: " << endl;
-		gym->listaNumerosGrupos(gym->retornaCurso(cod));
-		cout << "Digite el numero de grupo deseado: " << endl;
-		cin >> op;
-		if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
-			throw(ExcepcionGrupoNoExiste());
-		Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-		if (grupo->getListaDepo()->encontrarDeportista(id) != true)
-			throw(ExcepcionDepoNoMatriculado());
-	}
-	catch (ExcepcionGrupoNoExiste& e) {
-		cout << e.toString() << endl;
-		system("pause");
-		return;
-	}
-	catch (ExcepcionDepoNoMatriculado& e) {
-		cout << e.toString() << endl;
-		system("pause");
-		return;
-	}
-	cout << "Grupo encontrado!!" << endl;
-	Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-	grupo->getListaDepo()->deleteDepo(id);
-	cout << "Se ha des-matriculado el deportista" << id << endl;
-	system("pause");
-
-	/*
-	if (gym->encontrarDeportista(id) == true) {
-		gym->listadoCurso();
-		cout << "Digite el codigo de curso: " << endl;
-		cin >> cod;
-		if (gym->encontrarCurso(cod) == true) {
-			gym->listadoGrupos(gym->retornaCurso(cod));
-			cout << "Digite el numero de grupo: " << endl;
+	if (gym->seEncontraDeportistaEnGrupos(cod, id) == true) {
+		try {
+			system("cls");
+			cout << "Control de Grupos >> Cancelacion de matricula en grupo" << endl;
+			cout << "Deportista encontrado!!" << endl;
+			cout << "Curso encontrado!!" << endl << endl;
+			cout << "Listado de grupos para el curso seleccionado: " << endl;
+			gym->listaNumerosGrupos(gym->retornaCurso(cod));
+			cout << "Digite el numero de grupo deseado: " << endl;
 			cin >> op;
-			if (gym->encontrarGrupo(gym->retornaCurso(cod), op) == true) {
-				cout << "Grupo encontrado!!" << endl << endl;
-				Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-				cout << "Listado de matriculados en el grupo " << gym->retornaGrupo(gym->retornaCurso(cod), op)->getNumGrupo() << " del curso " << cod << endl;
-				grupo->getListaDepo()->listarDeportistasCedNom();
-				cout << "Digite el ID del estudiante a des-matricular: ";
-				cin >> idd;
-				if (grupo->getListaDepo()->encontrarDeportista(id) == true) {
-					grupo->getListaDepo()->deleteDepo(id);
-					cout << "Se des-matriculo con exito el estudiante " << id << endl; 
-				}
-				else
-					cout << "El ID ingresado no corresponde a ninguno de los asosiados a este grupo!!" << endl;
-				
-			}
+			if (gym->encontrarGrupo(gym->retornaCurso(cod), op) != true)
+				throw(ExcepcionGrupoNoExiste());
+			Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
+			if (grupo->getListaDepo()->encontrarDeportista(id) != true)
+				throw(ExcepcionDepoNoMatriculado());
 		}
-	}*/
+		catch (ExcepcionGrupoNoExiste& e) {
+			cout << e.toString() << endl;
+			system("pause");
+			return;
+		}
+		catch (ExcepcionDepoNoMatriculado& e) {
+			cout << e.toString() << endl;
+			system("pause");
+			return;
+		}
+		cout << "Grupo encontrado!!" << endl;
+		Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
+		grupo->getListaDepo()->deleteDepo(id);
+		cout << "Se ha des-matriculado el deportista" << id << endl;
+		gym->retornaDeportista(id)->restar();
+	}
+	system("pause");
 }
 
 

@@ -27,6 +27,11 @@ public:
 	virtual double getTemPromedio() = 0;
 	virtual string getEstado() = 0;
 
+	virtual int getCantGrupo() = 0;
+	virtual void setCantGrupo(int) = 0;
+	virtual void sumar() = 0;
+	virtual void restar() = 0;
+	
 	virtual void setEstado(string) = 0;
 	virtual void setHorasEntrenadas(int) = 0;
 	virtual void setTemPromedio(double) = 0;
