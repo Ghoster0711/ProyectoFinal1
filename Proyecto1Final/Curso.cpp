@@ -10,7 +10,12 @@ Curso::Curso(string cod, string nom, string desc, string niv, int cant)
 	COG = new Contenedor<Grupo>;
 }
 
-Curso::~Curso() {}
+Curso::~Curso() {
+	if (COG->getPrimero() != NULL)
+		delete COG;
+}
+
+
 string Curso::getCodigo() { return codigo; }
 
 
