@@ -70,8 +70,8 @@ public:
 	//--------Pagos--------
 
 	string registroNuevoPago(string, int);  // Metodo para registrar un pago
-  int fechaHistorialDeportista(string); // Metodo para calcular el mes del ultimo pago
-	string calcularCuotasCanceladas(int); // Metodo para calcular las cuotas canceladas
+	int fechaHistorialDeportista(string); // Metodo para calcular el mes del ultimo pago
+	string calcularCuotasCanceladas(string, int); // Metodo para calcular las cuotas canceladas
 	string reportePagosDeportista(string); // Metodo que lista los pagos hechos por los deportistas
 
 
