@@ -386,7 +386,7 @@ string Gym::calcularCuotasCanceladas(string id,int cuotas) {
 
 string Gym::reportePagosDeportista(string id) {
 	stringstream s;
-	s << " Fecha de Pago          Mes Pagado        Monto cancelado" << endl;
+	s << " Fecha de Pago          Mes Pagado        Monto cancelado" << endl << endl;
 	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
 	while (ite->getPNodo() != NULL) {
 		if (ite->getPNodo()->getDato() != NULL) {
