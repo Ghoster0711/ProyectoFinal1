@@ -8,11 +8,11 @@ class Excepciones {  //Case abstracta para la creacion de distintos tipos de Exc
 public:
 	Excepciones();
 	virtual ~Excepciones();
-	virtual string toString() const = 0;
+	virtual string toString() const = 0;   //Metodo virtual puro 
 };
 
 
-class ExcepcionCodigoExiste : public Excepciones {   //Excepcion que ya existe un curso con algun codigo
+class ExcepcionCodigoExiste : public Excepciones {   //Clase Derivada: Excepcion que ya existe un curso con algun codigo
 public:
 	ExcepcionCodigoExiste();
 	virtual ~ExcepcionCodigoExiste();
@@ -20,7 +20,7 @@ public:
 };
 
 
-class ExcepcionCodigoNoExiste : public Excepciones {  //Excepcion que no existe un curso con algun codigo
+class ExcepcionCodigoNoExiste : public Excepciones {  //Clase Derivada: Excepcion que no existe un curso con algun codigo
 public:
 	ExcepcionCodigoNoExiste();
 	virtual ~ExcepcionCodigoNoExiste();
@@ -28,7 +28,7 @@ public:
 };
 
  
-class ExcepcionIDNoExiste : public Excepciones {   //Excepcion que no existe un deportista con algun ID
+class ExcepcionIDNoExiste : public Excepciones {   //Clase Derivada: Excepcion que no existe un deportista con algun ID
 public:
 	ExcepcionIDNoExiste();
 	virtual ~ExcepcionIDNoExiste();
@@ -36,31 +36,23 @@ public:
 };
 
 
-class ExcepcionIDExiste : public Excepciones {    //Excepcion que ya existe un deportista con algun ID 
+class ExcepcionIDExiste : public Excepciones {    //Clase Derivada: Excepcion que ya existe un deportista con algun ID 
 public:
 	ExcepcionIDExiste();
 	virtual ~ExcepcionIDExiste();
 	string toString() const;
 };
 
-//Excepcion matricula deportista
-class ExcepcionMatricula : public Excepciones {
-public:
-	ExcepcionMatricula();
-	virtual ~ExcepcionMatricula();
-	string toString() const;
-};
-
-//Excepcion de grupo lleno 
-class ExcepcionGrupoLleno : public Excepciones {
+ 
+class ExcepcionGrupoLleno : public Excepciones {    //Clase Derivada: Excepcion que un grupo esta lleno
 public:
 	ExcepcionGrupoLleno();
 	virtual ~ExcepcionGrupoLleno();
 	string toString() const;
 };
 
-//Excepcion que no existe numero de grupo 
-class ExcepcionGrupoNoExiste : public Excepciones {
+
+class ExcepcionGrupoNoExiste : public Excepciones {    //Clase Derivada: Excepcion que no existe un grupo 
 public:
 	ExcepcionGrupoNoExiste();
 	virtual ~ExcepcionGrupoNoExiste();
@@ -68,8 +60,8 @@ public:
 
 };
 
-//Excepcion no existe deportista en x grupo
-class ExcepcionDepoNoMatriculado : public Excepciones {
+
+class ExcepcionDepoNoMatriculado : public Excepciones {    //Clase Derivada: Excepcion no existe deportista en x grupo
 public:
 	ExcepcionDepoNoMatriculado();
 	virtual ~ExcepcionDepoNoMatriculado();
@@ -77,18 +69,11 @@ public:
 };
 
 
-//Excepcion de que no se digito una opcion del menu 
-class ExcepcionRango : public Excepciones {
+class ExcepcionRango : public Excepciones {    //Clase Derivada: Excepcion de que no se digito una opcion del menu 
 public:
 	ExcepcionRango();
 	virtual ~ExcepcionRango();
 	string toString() const;
 };
+ 
 
-//Excepcion de cambio de estado 
-class ExcepcionCambioEstado : public Excepciones {
-public:
-	ExcepcionCambioEstado();
-	virtual ~ExcepcionCambioEstado();
-	string toString() const;
-};

@@ -62,7 +62,8 @@ public:
 
 	//--------Pagos--------
 	string registroNuevoPago(string, int);
-	string calcularCuotasCanceladas(int);
+	int fechaHistorialDeportista(string);
+	string calcularCuotasCanceladas(string,int);
 	string reportePagosDeportista(string);
 
 

@@ -1,17 +1,18 @@
 #pragma once
 #include"Nodo.h"
+
+
 template<class T>
-class Iterador
-{
+class Iterador{
 private:
-	Nodo<T>* pNodo;  //es el puntero al que esta viendo en ese momento (current)
+	Nodo<T>* pNodo;  //Es el puntero al que esta viendo en ese momento (current)
 public:
 	Iterador();
 	Iterador(Nodo<T>*);
 	virtual~Iterador();
 	Nodo<T>* getPNodo();
-	T& operator  *();    //obtiene el elemento que ve y lo retorna 
-	void operator ++();  //se pasa de un elemento a otro
+	T& operator  *();    //Obtiene el elemento que ve y lo retorna 
+	void operator ++();  //Se pasa de un elemento a otro
 };
 
 template<class T>

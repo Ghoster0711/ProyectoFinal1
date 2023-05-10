@@ -165,7 +165,6 @@ bool Gym::deportistaMoroso(string id) {
 }
 
 
-
 // ----------------------Cursos----------------------
 void Gym::listadoCurso()
 {
@@ -317,22 +316,25 @@ void Gym::listaNumerosGrupos(Curso* cur)
 }
 
 //---------------Control Pagos----------------
+
 string Gym::registroNuevoPago(string id,int cuotas) {
 
 	int dia = fecha->getDia();
 	int mes = fecha->getMes();
 	int anio = fecha->getAnio();
 
-	int diaAux = fecha->getDia();
 	int mesAux = fecha->getMes();
 	int anioAux = fecha->getAnio();
 
+	if (COHP->getPrimero() != NULL) {
+		mesAux = fechaHistorialDeportista(id) + 1;
+	}
 	while (cuotas != 0) {
 		if (mes > 12) {
 			mesAux = 1;
 			anioAux++;
 		}
-		Fecha* fecha = new Fecha(dia, mes, anio);
+		Fecha* fecha = new Fecha(dia, mes, anioAux);
 		HistorialDePago* historial = new HistorialDePago(id, fecha, mensualidad, mesAux);
 		mesAux++;
 		cuotas--;
@@ -341,11 +343,30 @@ string Gym::registroNuevoPago(string id,int cuotas) {
 	return convierteMes(mesAux - 1);
 }
 
-string Gym::calcularCuotasCanceladas(int cuotas) {
+int Gym::fechaHistorialDeportista(string id) {
+	int mes = 0;
+	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
+	Fecha* fecha = NULL;
+	while (ite->getPNodo() != NULL) {
+		if (ite->getPNodo()->getDato() != NULL) {
+			if (ite->getPNodo()->getDato()->getId() == id) {
+				 mes = ite->getPNodo()->getDato()->getMesPagado();
+				 return mes;
+			}
+		}
+		ite->operator++();
+	}
+	mes = fecha->getMes();
+	return mes;
+}
+
+string Gym::calcularCuotasCanceladas(string id,int cuotas) {
 	stringstream s;
-	int dia = fecha->getDia();
 	int mes = fecha->getMes();
 	int anio = fecha->getAnio();
+
+	if (COHP->getPrimero() != NULL)
+		mes = fechaHistorialDeportista(id) + 1;
 
 	while (cuotas != 0) {
 		if (mes > 12) {

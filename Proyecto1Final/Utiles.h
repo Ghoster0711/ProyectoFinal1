@@ -5,9 +5,9 @@
 
 using namespace std;
 
+//Clase de servicio Utiles 
 
-
-string recibirGetline();
+string recibirGetline();  
 void ignorar();
 string convierteMes(int);
 int entradaInt();
