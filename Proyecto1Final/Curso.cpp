@@ -1,5 +1,5 @@
 #include "Curso.h"
-
+// Desarrollo de los constructores
 Curso::Curso()
 	:codigo(""), nombre(""), descripcion(""), nivel(""), cantidadGrupos(0) {
 	COG = new Contenedor<Grupo>;
@@ -10,12 +10,14 @@ Curso::Curso(string cod, string nom, string desc, string niv, int cant)
 	COG = new Contenedor<Grupo>;
 }
 
+
+// Desarrollo del destructor
 Curso::~Curso() {
 	if (COG->getPrimero() != NULL)
 		delete COG;
 }
 
-
+// Desarrollo de lo metodos get's set's y toString
 string Curso::getCodigo() { return codigo; }
 
 
@@ -24,18 +26,13 @@ string Curso::getNombre() { return nombre; }
 string Curso::getDescription() { return descripcion; }
 
 string Curso::getNivel() { return nivel; }
-int Curso::getCantidadGrupos()
-{
-	return cantidadGrupos;
-}
-Contenedor<Grupo>* Curso::getCOG()
-{
-	return COG;
-}
-void Curso::setCantidadGrupos(int x)
-{
-	cantidadGrupos = x;
-}
+
+int Curso::getCantidadGrupos() {	return cantidadGrupos; }
+
+Contenedor<Grupo>* Curso::getCOG() { return COG; }
+
+void Curso::setCantidadGrupos(int x) { cantidadGrupos = x; }
+
 void Curso::setCodigo(string cod) { codigo = cod; }
 
 void Curso::setNombre(string nom) { nombre = nom; }
@@ -54,6 +51,8 @@ string Curso::toString() {
 	return show.str();
 }
 
+
+// Este metodo muestra nada mas el codigo, nombre y nivel
 string Curso::toStringListado()
 {
 	stringstream show;
