@@ -11,9 +11,13 @@ private:
 	Nadador* nadador;
 	Ciclista* ciclista;
 public:
+	// Constructor
 	Triatlonista(string, string, string, Fecha*, char, double, int, int, int, double, double, double, double);
+	
+	// Destructor
 	virtual ~Triatlonista();
 
+	// Metodos get's, set's, toString de la clase y metodos virtuales puros
 	string getCedula();
 	string getNombre();
 	string getTelefono();

@@ -5,7 +5,7 @@
 using namespace std;
 
 
-
+// Se crea la clase Curso
 class Curso {
 protected:
     string codigo;
@@ -13,11 +13,18 @@ protected:
     string descripcion;
     string nivel;
     int cantidadGrupos;
-    Contenedor<Grupo>* COG;
+    Contenedor<Grupo>* COG;  // Un contenedor para los Grupos
 public:
+    // Constructor
     Curso();
+
+    // Construcctor parametrizado
     Curso(string, string, string, string, int);
+
+    // Destructor
     virtual ~Curso();
+
+    // Metodos get's set's y toString de la clase
     string getCodigo();
     string getNombre();
     string getDescription();
@@ -32,5 +39,4 @@ public:
     void setNivel(string);
     string toString();
     string toStringListado();
-    //void ingresarGrupo(Grupo*);
 };

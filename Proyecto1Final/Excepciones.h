@@ -43,8 +43,9 @@ public:
 	string toString() const;
 };
 
- 
-class ExcepcionGrupoLleno : public Excepciones {    //Clase Derivada: Excepcion que un grupo esta lleno
+
+//Excepcion de grupo lleno 
+class ExcepcionGrupoLleno : public Excepciones { //Clase Derivada: Excepcion grupo esta lleno
 public:
 	ExcepcionGrupoLleno();
 	virtual ~ExcepcionGrupoLleno();

@@ -279,7 +279,8 @@ void Interfaz::modificacionesDeportista(Deportista* depo, int op) {
 void Interfaz::listaDeporsitas(Gym* gym) {
 
 	int op = 0;
-  gym->deportistasMorosos();
+	if(gym->getCOHP()->getPrimero() != NULL)
+		gym->deportistasMorosos();
 	do {
 		try {
 			system("cls");
@@ -578,7 +579,7 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	nom = recibirGetline();
 	cout << "Digite el cupo maximo: ";
 	cup = entradaInt();;
-	cout << "Fecha de inicio(dd/mm/aaaa): " << endl;
+	cout << "Fecha de inicio(dd mm aaaa): " << endl;
 	cout << "Dia: "; dia = entradaInt();
 	cout << "Mes: "; mes = entradaInt();
 	cout << "Anio: "; anio = entradaInt();
@@ -598,9 +599,9 @@ void Interfaz::ingresarGrupo(Gym* gym) {
 	Hora* horaInicio = new Hora(h1, m1);
 	Hora* horaFinal = new Hora(h2, m2);
 	Horario* horario = new Horario(d, horaInicio, horaFinal);
-	Grupo* grupo = new Grupo(id, nom, cup, semas, fechaInicio, horario, gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() + 1);
+	Grupo* grupo = new Grupo(id, nom, cup, semas, fechaInicio, horario, gym->retornaCurso(cod)->getCOG()->getCantidad() + 1);
 	gym->retornaCurso(cod)->getCOG()->ingresar(*grupo);
-	cout << "Se ha creado el grupo " << gym->getCOC()->getPrimero()->getDato()->getCOG()->getCantidad() << endl;    
+	cout << "Se ha creado el grupo " << gym->retornaCurso(cod)->getCOG()->getCantidad() << endl;
 
 
 	system("pause");
@@ -700,7 +701,7 @@ void Interfaz::modificacionesGrupo(Grupo* grupo, int op) {
 		system("pause");
 		break;
 	case 4:
-		cout << "Digite la nueva fecha de inicio(dd/mm/aaaa):" << endl;
+		cout << "Digite la nueva fecha de inicio(dd mm aaaa):" << endl;
 		cout << "Dia: "; d = entradaInt();
 		cout << "Mes: "; m = entradaInt();
 		cout << "Anio: "; a = entradaInt();
@@ -745,7 +746,6 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 	int dia, mes, anio;
 	int op;
 	bool acceso = true;
-	gym->deportistasMorosos();
 	try {
 		system("cls");
 		cout << "Control de Grupos >> Matricula en Grupo Especifico" << endl << endl;
@@ -807,7 +807,7 @@ void Interfaz::matricularEnGrupo(Gym* gym) {
 			}
 			cout << "Grupo encontrado!!" << endl;
 			Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
-			cout << "Digite la fecha de matricula (dd/mm/aaaa):" << endl;
+			cout << "Digite la fecha de matricula (dd mm aaaa):" << endl;
 			cout << "Dia: "; dia = entradaInt();
 			cout << "Mes: "; mes = entradaInt();
 			cout << "Anio: "; anio = entradaInt();
@@ -970,7 +970,7 @@ void Interfaz::cancelacionDeMatriculaEnGrupo(Gym* gym) {
 		cout << "Grupo encontrado!!" << endl;
 		Grupo* grupo = gym->retornaGrupo(gym->retornaCurso(cod), op);
 		grupo->getListaDepo()->deleteDepo(id);
-		cout << "Se ha des-matriculado el deportista" << id << endl;
+		cout << "Se ha des-matriculado el deportista " << id << endl;
 		gym->retornaDeportista(id)->restar();
 	}
 	system("pause");
