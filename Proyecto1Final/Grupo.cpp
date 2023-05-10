@@ -1,11 +1,7 @@
 #include"Grupo.h"
-//string IDInst;
-//string nombreInst;
-//int cupoMaximo;
-//int durarcion;
-//Fecha* fecha;
-//Horario* horario;
 
+
+//Desarrollo del Constructor parametrizado 
 Grupo::Grupo(string id, string nom, int cM, int d, Fecha* fec, Horario* hor,int n) {
 	IDInst = id;
 	nombreInst = nom;
@@ -14,9 +10,10 @@ Grupo::Grupo(string id, string nom, int cM, int d, Fecha* fec, Horario* hor,int 
 	fecha = fec;
 	horario = hor;
 	numGrupo = n;
-	listaDepo = new Contenedor<Deportista>;
+	listaDepo = new Contenedor<Deportista>;   //Internamente se crea el Contenedor Deportista(T)
 }
 
+//Desarrollo del destructor  
 Grupo:: ~Grupo() {
 	if (fecha != NULL)
 		delete fecha;
@@ -26,6 +23,7 @@ Grupo:: ~Grupo() {
 		delete listaDepo;
 }
 
+//Desarrollo de Get's 
 string Grupo::getIDInstructor() {
 	return IDInst;
 }
@@ -58,6 +56,7 @@ Contenedor<Deportista>* Grupo::getListaDepo()
 	return listaDepo;
 }
 
+//Desarrollo de Set's 
 void Grupo::setID(string id) {
 	IDInst = id;
 }
@@ -85,6 +84,7 @@ void Grupo::setNumGrupo(int n) {
 	numGrupo = n;
 }
 
+//Desarrollo del toString 
 string Grupo::toString() {
 	stringstream s;
 	s << "Numero del Grupo: " << numGrupo << endl

@@ -1,15 +1,17 @@
 #include "Utiles.h"
-string recibirGetline() {
+
+
+string recibirGetline() {   //Ingreso de muchos caracteres(con espacios)
 	string s;
 	getline(cin, s);
 	return s;
 }
 
-void ignorar() {
+void ignorar() {        
 	cin.ignore();
 }
 
-string convierteMes(int m) {
+string convierteMes(int m) {    //Convierte el numero de mes en el nombre del mes 
 	if (m == 1) {
 		return "Enero";
 	}
@@ -49,8 +51,7 @@ string convierteMes(int m) {
 	return "";
 }
 
-int entradaInt()
-{
+int entradaInt() {  //Valora si el dato ingresado es de tipo int 
 	int num;
 	bool acceso = true;
 	do {
@@ -73,8 +74,7 @@ int entradaInt()
 	return num;
 }
 
-double entradaDouble()
-{
+double entradaDouble() {   //Valora si el dato ingresado es de tipo double 
 	double num;
 	bool acceso = true;
 	do {
@@ -95,9 +95,8 @@ double entradaDouble()
 	} while (acceso != true);
 	return num;
 }
-
-string entradaActivoInactivo()
-{
+ 
+string entradaActivoInactivo() {   //Valora si el estado ingresado es "Activo" o "Inactivo"
 	string input;
 	bool acceso = true;
 	do {
@@ -117,8 +116,7 @@ string entradaActivoInactivo()
 	return input;
 }
 
-char entradaSexo()
-{
+char entradaSexo() {    //Valora si el sexo ingresado es 'f' o 'm'
 	char input;
 	bool acceso = true;
 	do {
@@ -138,8 +136,7 @@ char entradaSexo()
 	return input;
 }
 
-char entradaSemana()
-{
+char entradaSemana() {  //Valora la letra del dia ingresado es alguno de los que estan permitidos 
 	char input;
 	bool acceso = true;
 	do {

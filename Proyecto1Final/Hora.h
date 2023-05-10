@@ -4,10 +4,10 @@
 
 using namespace std;
 
-class Hora {
+class Hora {	 
 private:
-	int hora;
-	int minuto;
+	int hora;    
+	int minuto; 
 public:
 	Hora(int, int);
 	virtual ~Hora();

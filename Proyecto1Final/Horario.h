@@ -7,11 +7,11 @@
 using namespace std;
 
 
-class Horario {
+class Horario {    //Horario del grupo 
 private:
-    char dia;
-    Hora* horaI;
-    Hora* horaF;
+    char dia;    //Dia del horario 
+    Hora* horaI;  //Hora de inicio  
+    Hora* horaF;  //Hora de final 
 public:
     Horario();
     Horario(char, Hora*, Hora*);
