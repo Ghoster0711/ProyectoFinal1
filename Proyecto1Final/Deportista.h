@@ -3,6 +3,8 @@
 #include "Ciclista.h"
 #include "Nadador.h"
 
+
+// Se crea la clase Deportista
 class Deportista {
 protected:
 	string cedula;
@@ -12,8 +14,12 @@ protected:
 	string estado;
 	int cantGrupo;
 public:
+	// Constructor
 	Deportista(string, string, string, Fecha*);
+	// Destructor
 	virtual ~Deportista();
+
+	//Metodos virtuales puros
 	virtual string getCedula() = 0;
 	virtual string getNombre() = 0;
 	virtual string getTelefono() = 0;
