@@ -330,11 +330,11 @@ string Gym::registroNuevoPago(string id,int cuotas) {
 		mesAux = fechaHistorialDeportista(id) + 1;
 	}
 	while (cuotas != 0) {
-		if (mes > 12) {
+		if (mesAux > 12) {
 			mesAux = 1;
 			anioAux++;
 		}
-		Fecha* fecha = new Fecha(dia, mes, anioAux);
+		Fecha* fecha = new Fecha(dia, mes, anio);
 		HistorialDePago* historial = new HistorialDePago(id, fecha, mensualidad, mesAux);
 		mesAux++;
 		cuotas--;
@@ -382,7 +382,7 @@ string Gym::calcularCuotasCanceladas(string id,int cuotas) {
 
 string Gym::reportePagosDeportista(string id) {
 	stringstream s;
-	s << " Fecha de Pago          Mes Pagado        Monto cancelado" << endl;
+	s << " Fecha de Pago          Mes Pagado        Monto cancelado" << endl << endl;
 	Iterador<HistorialDePago>* ite = new Iterador<HistorialDePago>(COHP->getPrimero());
 	while (ite->getPNodo() != NULL) {
 		if (ite->getPNodo()->getDato() != NULL) {

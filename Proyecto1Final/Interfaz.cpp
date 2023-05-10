@@ -39,15 +39,12 @@ void Interfaz::administracionGeneral() {
 
 void Interfaz::nombreGym(Gym* gym) {
 	system("cls");
-	Fecha* fecha = new Fecha(9, 5, 2023);
-	gym->setFecha(fecha);
-	cout << "Fecha actualizada" << endl;
-	/*string nombre;
+	string nombre;
 	cout << "Administracion General >> Nombre del Gimnasio" << endl << endl;
 	cout << "Ingrese el nombre del gimnasio: ";
 	ignorar();
 	nombre = recibirGetline();
-	gym->setNombre(nombre);*/
+	gym->setNombre(nombre);
 	system("pause");
 }
 
@@ -79,7 +76,7 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 	double est = 0, masa = 0, peso = 0, grasa = 0;
 	int dia = 0, mes = 0, anio = 0, horas = 0, iron = 0, ganados = 0;
 	char sex = 'n';
-	//if (gym->getCOC()->getPrimero() != NULL) {
+	if (gym->getCOC()->getPrimero() != NULL) {
 		try {
 			system("cls");
 			cout << "Control de Deportistas >> Ingreso Nuevo Deportista" << endl << endl;
@@ -125,11 +122,11 @@ void Interfaz::ingresaDeportista(Gym* gym) {
 		Deportista* d = new Triatlonista(id, string(nom), tel, x, sex, est, iron, ganados, horas, 0.0, masa, peso, grasa);
 		gym->getCOD()->ingresar(*d);
 		cout << "Deportista ingresado!!" << endl;
-	//}
-	//else {
-		//system("cls");
-		//cout << "ERROR: No existen cursos" << endl;
-	//}
+	}
+	else {
+		system("cls");
+		cout << "ERROR: No existen cursos" << endl;
+	}
 	system("pause");
 }
 
