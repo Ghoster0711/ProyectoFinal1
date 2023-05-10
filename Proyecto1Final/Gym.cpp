@@ -332,8 +332,8 @@ string Gym::registroNuevoPago(string id,int cuotas) {
 			mesAux = 1;
 			anioAux++;
 		}
-		Fecha* fecha = new Fecha(dia, mes, anio);
-		HistorialDePago* historial = new HistorialDePago(id, fecha, mensualidad, mesAux);
+		
+		HistorialDePago* historial = new HistorialDePago(id, new Fecha(dia, mes, anio), mensualidad, mesAux);
 		mesAux++;
 		cuotas--;
 		COHP->ingresar(*historial);

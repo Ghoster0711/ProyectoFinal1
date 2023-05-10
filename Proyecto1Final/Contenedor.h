@@ -59,7 +59,7 @@ Nodo<T>* Contenedor<T>::getPrimero() {
 template<class T>
 bool Contenedor<T>::ingresar(T& dato) {
 	_primero = new Nodo<T>((T*)&dato, _primero);
-	cantidad++;
+	cantidad = cantidad + 1;
 	return true;
 }
 
