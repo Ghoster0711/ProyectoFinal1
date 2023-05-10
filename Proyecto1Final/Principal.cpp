@@ -1,3 +1,21 @@
+/*
+Proyecto de Programacion 2
+
+Gimnasio UNAfit
+
+Integrantes:
+	Joshua Yarit Amador Lara		604830349
+	Sianny Barrantes Benavides		402640260
+
+version:
+	1.0
+
+Año:
+	2023
+
+*/
+
+
 #include "Gym.h"
 #include"Interfaz.h"
 #include"Excepciones.h"

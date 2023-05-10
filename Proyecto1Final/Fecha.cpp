@@ -1,12 +1,18 @@
 #include "Fecha.h"
 
+
+// Desarrollo del constructor
 Fecha::Fecha(int d, int m, int a) {
 	dia = d;
 	mes = m;
 	anio = a;
 }
+
+// Desarrollo del destructor
 Fecha::~Fecha() { }
 
+
+// Desarrollo de lo metodos get's set's y toString
 int Fecha::getDia() { return dia; }
 int Fecha::getMes() { return mes; }
 int Fecha::getAnio() { return anio; }

@@ -1,6 +1,7 @@
 #include "Gym.h"
 
 
+// Constructor
 Gym::Gym() {
 	nombre = "UNAfitness";
 	mensualidad = 0;
@@ -10,7 +11,7 @@ Gym::Gym() {
 	COHP = new Contenedor<HistorialDePago>();
 }
 
-
+// Destructor
 Gym::~Gym() {
 	if (COD->getPrimero() != NULL)
 		delete COD;
@@ -22,7 +23,7 @@ Gym::~Gym() {
 		delete fecha;
 }
 
-
+// Desarrollo de lo metodos get's set's 
 Contenedor<Deportista>* Gym::getCOD() const { return COD; }
 Contenedor<Curso>* Gym::getCOC() const { return COC; }
 Contenedor<HistorialDePago>* Gym::getCOHP() const { return COHP; }
@@ -40,6 +41,8 @@ void Gym::setNombre(string nom) { nombre = nom; }
 
 void Gym::setFecha(Fecha* fec) { fecha = fec; }
 
+
+// Desarrollo de los metodos para los contenedores
 
 //--------------------Deportistas--------------
 
@@ -167,6 +170,7 @@ bool Gym::deportistaMoroso(string id) {
 
 
 // ----------------------Cursos----------------------
+
 void Gym::listadoCurso()
 {
 	Iterador<Curso>* ite = new Iterador<Curso>(COC->getPrimero());
@@ -206,6 +210,7 @@ Curso* Gym::retornaCurso(string cod)
 
 
 // ---------------------Grupos----------------------
+
 string Gym::encontrarDeportistaEnGrupos(string ced)
 {
 	stringstream show;
@@ -317,6 +322,7 @@ void Gym::listaNumerosGrupos(Curso* cur)
 }
 
 //---------------Control Pagos----------------
+
 string Gym::registroNuevoPago(string id,int cuotas) {
 
 	int dia = fecha->getDia();
