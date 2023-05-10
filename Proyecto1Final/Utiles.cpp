@@ -61,7 +61,7 @@ int entradaInt() {  //Valora si el dato ingresado es de tipo int
 				cin.clear();
 				cin.ignore();
 				acceso = false;
-				throw "Error: entrada no válida, la entrada debe ser un numero, vuelva a ingresar";
+				throw "Error: entrada no valida, la entrada debe ser un numero, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -84,7 +84,7 @@ double entradaDouble() {   //Valora si el dato ingresado es de tipo double
 				cin.clear();
 				cin.ignore();
 				acceso = false;
-				throw "Error: entrada no válida, la entrada debe ser un numero vuelva a ingresar";
+				throw "Error: entrada no valida, la entrada debe ser un numero vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -104,7 +104,7 @@ string entradaActivoInactivo() {   //Valora si el estado ingresado es "Activo" o
 			cin >> input;
 			if (input != "Activo" || input != "Inactivo") {
 				acceso = false;
-				throw "Error: entrada no válida debe ser Activo o Inactivo, vuelva a ingresar";
+				throw "Error: entrada no valida debe ser Activo o Inactivo, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -124,7 +124,7 @@ char entradaSexo() {    //Valora si el sexo ingresado es 'f' o 'm'
 			cin >> input;
 			if (input != 'f' && input != 'm') {
 				acceso = false;
-				throw "Error: entrada no válida debe ser f o m, vuelva a ingresar";
+				throw "Error: entrada no valida debe ser f o m, vuelva a ingresar";
 			}
 			else
 				acceso = true;
@@ -144,7 +144,7 @@ char entradaSemana() {  //Valora la letra del dia ingresado es alguno de los que
 			cin >> input;
 			if (input != 'l' && input != 'k' && input != 'm' && input != 'j' && input != 'v' && input != 's' && input != 'd') {
 				acceso = false;
-				throw "Error: entrada no válida debe ser l / k / m / j / v / s / d";
+				throw "Error: entrada no valida debe ser l / k / m / j / v / s / d";
 			}
 			else
 				acceso = true;

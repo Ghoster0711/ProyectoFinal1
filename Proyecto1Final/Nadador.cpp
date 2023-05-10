@@ -1,9 +1,15 @@
 #include "Nadador.h"
 
+// Desarrollo del constructor
 Nadador::Nadador(double mas, double pes, double porc)
 	: masaMuscular(mas), peso(pes), porcGrasaCorporal(porc) {}
+
+// Desarrollo del destructor
 Nadador::~Nadador() {}
 
+
+
+// Desarrollo de lo metodos get's set's y toString
 double Nadador::getMasaMuscular() { return masaMuscular; }
 double Nadador::getPeso() { return peso; }
 double Nadador::getProcGrasaCorporal() { return porcGrasaCorporal; }

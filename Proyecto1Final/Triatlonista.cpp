@@ -1,5 +1,7 @@
 #include "Triatlonista.h"
 
+
+// Desarrollo del constructor
 Triatlonista::Triatlonista(string ced, string nom, string tel, Fecha* fec, char sex, double est, int cantP, int cantT, 
 	int horasEntrenas, double temPro, double masa, double peso, double porcG)
 	:Corredor(ced, nom, tel, fec, sex, est), cantParticEnIronMan(cantP), cantTriatGanados(cantT) {
@@ -7,6 +9,8 @@ Triatlonista::Triatlonista(string ced, string nom, string tel, Fecha* fec, char 
 	nadador = new Nadador(masa, peso, porcG);
 
 }
+
+// Desarrollo del destructor
 Triatlonista::~Triatlonista() {
 	if (ciclista != NULL)
 		delete ciclista;
@@ -14,7 +18,7 @@ Triatlonista::~Triatlonista() {
 		delete nadador;
 }
 
-
+// Desarrollo de lo metodos get's set's toString y de los metodos virtuales puros
 string Triatlonista::getCedula() { return cedula; }
 string Triatlonista::getNombre() { return nombre; }
 string Triatlonista::getTelefono() { return telefono; }
