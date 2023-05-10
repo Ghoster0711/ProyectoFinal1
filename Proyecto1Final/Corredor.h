@@ -1,15 +1,19 @@
 #pragma once
 #include "Deportista.h"	
 
+// Se crea la clase Corredor con herencia de Deportista
 class Corredor : public Deportista {
 protected:
 	char sexo;
 	double estatura;
 public:
+	// Constructor
 	Corredor(string, string, string, Fecha*, char, double);
+
+	// Destructor
 	virtual ~Corredor();
 
-
+	//Metodos virtuales puros
 	virtual string getCedula() = 0;
 	virtual string getNombre() = 0;
 	virtual string getTelefono() = 0;
